@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class BinSearchX {
   
-  //--- 探索する要素が複数ある場合にその先頭要素を返すよう改良した二分探索メソッド ---//
+  	//--- 探索する要素が複数ある場合にその先頭要素を返すよう改良した二分探索メソッド ---//
 	static int binSearchX(int[] a, int n, int key){
 		int p1=0;
 		int pr=n-1;
@@ -12,7 +12,7 @@ public class BinSearchX {
 		do{
 			int pc = (p1 + pr) / 2;
 			if(a[pc] == key){
-				while(a[pc] == a[pc-1]){
+				while(a[pc] == a[pc-1]){	//キーが中央の前にあるとき、pcをデクリメント
 					pc--;
 				}
 				return pc;
@@ -36,7 +36,7 @@ public class BinSearchX {
 		int[] arr = new int[num];
 
 		for(int i=0; i < num; i++)
-			arr[i] = rnd.nextInt(num-1);
+			arr[i] = rnd.nextInt(num-1);	//重複する要素について確認したいため、numより少ない数のうちで乱数を発生
 
 		Arrays.sort(arr);
 
