@@ -7,9 +7,9 @@ public class IntArrayQueue {
 	private int[] que;		//キューの本体
 
 	//--- 実行時例外:キューが空 ---//
-		public class EmptyIntQueueException extends RuntimeException{
-			public EmptyIntQueueException(){}
-		}
+	public class EmptyIntQueueException extends RuntimeException{
+		public EmptyIntQueueException(){}
+	}
 
 	//--- 実行時例外:キューが満杯---//
 	public class OverflowIntQueueException extends RuntimeException{
