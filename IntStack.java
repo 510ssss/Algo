@@ -27,24 +27,28 @@ public class IntStack {
 		}
 	}
 
+	//--- スタックにxをプッシュ ---//
 	public int push(int x) throws OverflowIntStackException{
 		if(ptr >= max)
 			throw new OverflowIntStackException();
 		return stk[ptr++] = x;
 	}
 
+	//--- スタックからデータをポップ ---//
 	public int pop() throws EmptyIntStackException{
 		if(ptr <= 0)
 			throw new EmptyIntStackException();
 		return stk[--ptr];
 	}
 
+	//--- スタックからデータをピーク ---//
 	public int peak() throws EmptyIntStackException{
 		if(ptr <= 0)
 			throw new EmptyIntStackException();
 		return stk[ptr-1];
 	}
 
+	//--- スタックからxを探してインデックス ---//
 	public int indexOf(int x){
 		for(int i = ptr-1; i >= 0; i--)
 			if(stk[ptr] == x)
@@ -52,26 +56,32 @@ public class IntStack {
 		return -1;
 	}
 
+	//--- スタックを空にする ---//
 	public void clear(){
 		ptr = 0;
 	}
 
+	//--- スタックの容量を返す ---//
 	public int capacity(){
 		return max;
 	}
 
+	//--- スタックに積まれているデータ数を返す ---//
 	public int size(){
 		return ptr;
 	}
 
+	//--- スタックが空であるか ---//
 	public boolean isEmpty(){
 		return ptr <= 0;
 	}
 
+	//--- スタックが満杯であるか ---//
 	public boolean isFull(){
 		return ptr >= max;
 	}
 
+	//--- スタック内のデータを底から表示 ---//
 	public void dump(){
 		if(isEmpty())
 			System.out.println("This stack is empty.");
