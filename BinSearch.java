@@ -19,7 +19,7 @@ public class BinSearch {
 				pr = pc -1;	//探索範囲後半にキーはないから、探索範囲の末尾を中心の前の要素とする。
 		}while(p1<=pr);
 
-		return -1;
+		return -1;			//探索失敗
 	}
 
 	public static void main(String[] args) {
