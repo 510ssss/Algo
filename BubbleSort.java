@@ -14,7 +14,7 @@ public class BubbleSort {
 	static void bubbleSort(int [] a, int n){
 		for(int i = 0; i < n-1; i++)		//泡の終着点iのループ
 			for(int j = n-1; j > i; j--)	//比較する場所の移動
-				if(a[j-1] > a[j])			//隣接する要素が降順の場合、交換する
+				if(a[j-1] > a[j])	//隣接する要素が降順の場合、交換する
 					swap(a, j-1, j);
 	}
 
