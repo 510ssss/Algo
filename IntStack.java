@@ -31,25 +31,27 @@ public class IntStack {
 	public int push(int x) throws OverflowIntStackException{
 		if(ptr >= max)
 			throw new OverflowIntStackException();
-		return stk[ptr++] = x;
+		return stk[ptr++] = x;		//xを格納した後にスタックポインタをインクリメント
 	}
 
 	//--- スタックからデータをポップ ---//
 	public int pop() throws EmptyIntStackException{
 		if(ptr <= 0)
 			throw new EmptyIntStackException();
-		return stk[--ptr];
+		return stk[--ptr];		//スタックポインタより1だけ前にあるデータを返す
+						//スタックポインタをデクリメントすることでデータを取り出したことと同義となる
 	}
 
 	//--- スタックからデータをピーク ---//
 	public int peak() throws EmptyIntStackException{
 		if(ptr <= 0)
 			throw new EmptyIntStackException();
-		return stk[ptr-1];
+		return stk[ptr-1];		//積まれているデータの頂上の値を返す
 	}
 
 	//--- スタックからxを探してインデックス ---//
 	public int indexOf(int x){
+		//--- 線形探索 ---//
 		for(int i = ptr-1; i >= 0; i--)
 			if(stk[ptr] == x)
 				return i;
@@ -58,7 +60,7 @@ public class IntStack {
 
 	//--- スタックを空にする ---//
 	public void clear(){
-		ptr = 0;
+		ptr = 0;			//スタックポインタを0にすることはすなわちスタックを空にすることと同義
 	}
 
 	//--- スタックの容量を返す ---//
