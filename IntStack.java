@@ -21,7 +21,7 @@ public class IntStack {
 		ptr = 0;
 		max = capacity;
 		try{
-			stk = new int[max];			//スタック本体用の配列を生成
+			stk = new int[max];	//スタック本体用の配列を生成
 		} catch(OutOfMemoryError e){	//生成できなかった
 			max = 0;
 		}
