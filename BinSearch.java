@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class binSearch {
+public class BinSearch {
 
 	static int binSearch(int[] a, int n, int key){
 		int p1=0;
