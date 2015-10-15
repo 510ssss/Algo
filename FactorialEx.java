@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class FactorialEx {
 
 	static int factorial(int n){
-		int ans = 1;	//階乗値を格納する変数
+		int ans = 1;		//階乗値を格納する変数
 		while(n >= 1)
 			ans *= n--;	//引数が1以上なら乗算代入、その後デクリメント
 		return ans;
