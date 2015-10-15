@@ -1,7 +1,7 @@
 //再帰メソッド呼び出しを用いず、階乗を求める。
 import java.util.Scanner;
 
-public class FactrialEx {
+public class FactorialEx {
 
 	static int factorial(int n){
 		int ans = 1;	//階乗値を格納する変数
