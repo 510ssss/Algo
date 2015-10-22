@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class selectionSort {
+public class SelectionSort {
 
 	//--- 交換メソッド ---//
 	static void swap(int[] a, int idx1, int idx2){
