@@ -14,7 +14,7 @@ public class InsertionSort {
 			for(j = i; j > 0 && a[j-1] > tmp; j--){
 				a[j] = a[j-1];	//a[i]が目的列を挿入位置から1つ後ろにずらす
 			}
-			a[j]=tmp;//確保した値を挿入する。
+			a[j]=tmp;		//確保した値を挿入する。
 		}
 	}
 
