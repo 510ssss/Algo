@@ -25,7 +25,7 @@ public class IntSet {
 	}
 	
 	public boolean contains(int n){
-		return (indexOf(n) == -1) ? true : false;
+		return (indexOf(n) != -1) ? true : false;
 	}
 	
 	public boolean add(int n){
