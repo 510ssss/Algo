@@ -58,5 +58,46 @@ public class IntSet {
 		return max;
 	}
 	
+	public void copyTo(IntSet s){
+		int n = (s.max < num) ? s.max : num;
+		for(int i = 0; i < n; i++)
+			s.set[i] = set[i];
+		num = n;
+	}
 	
+	public void copyFrom(IntSet s){
+		int n = (max < s.num) ? num : s.max;
+		for(int i = 0; i < n; i++)
+			set[i] = s.set[i];
+		num = n;
+	}
+	
+	public boolean equalTo(IntSet s){
+		if(num != s.num)
+			return false;
+		
+		for(int i = 0; i < num; i++){
+			int j = 0;
+			for( ; j < s.num; i++)
+				if(set[i] == s.set[j])
+					break;
+			if(j == s.num)
+				return false;
+		}
+		return true;
+	}
+	
+	public void uniofOf(IntSet s1, IntSet s2){
+		copyFrom(s1);
+		for(int i = 0; i < s2.num; i++)
+			add(s2.set[i]);
+	}
+	
+	public String toString(){
+		StringBuffer br = new StringBuffer("{");
+		for(int i = 0; i < num; i++)
+			br.append(set[i] + "");
+		br.append("}");
+		return br.toString();
+	}
 }
