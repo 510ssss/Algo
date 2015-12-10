@@ -1,7 +1,7 @@
 // 線形リストクラスLinkedList<E>の利用例
 
-import java.util.Comparator;
 import java.util.Scanner;
+import java.util.Comparator;
 
 class LinkedListTester {
 	static Scanner stdIn = new Scanner(System.in);
@@ -101,7 +101,7 @@ class LinkedListTester {
 			}
 			System.out.print("：");
 			key = stdIn.nextInt();
-		} while (key < Menu.ADD_FIRST.ordinal() ||
+		} while (key < Menu.ADD_FIRST.ordinal() || 
 											key > Menu.TERMINATE.ordinal());
 		return Menu.MenuAt(key);
 	}
@@ -116,7 +116,7 @@ class LinkedListTester {
 
 		do {
 			switch (menu = SelectMenu()) {
-
+			 
 			 case ADD_FIRST :				// 先頭にノードを挿入
 					data = new Data();
 				 	data.scanData("先頭に挿入", Data.NO | Data.NAME);
