@@ -19,20 +19,23 @@ public class LinkedList<E> {
 	private Node<E> head;	//先頭ノード
 	private Node<E> crnt;	//着目ノード
 
+	//-- コンストラクタ --//
 	public LinkedList(){
 		head = crnt = null;
 	}
 
+	//-- 探索メソッド --//
 	public E search(E obj, Comparator<? super E> c){
-		Node<E> ptr = head;
+		Node<E> ptr = head;						//走査中のノード
+
 		while(ptr != null){
-			if(c.compare(obj, ptr.data) == 0){
+			if(c.compare(obj, ptr.data) == 0){	//探索成功
 				crnt = ptr;
 				return ptr.data;
 			}
-			ptr = ptr.next;
+			ptr = ptr.next;						//後続ノードに移動
 		}
-		return null;
+		return null;							//探索失敗
 	}
 
 	public void addFirst(E obj){
