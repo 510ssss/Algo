@@ -26,16 +26,16 @@ public class LinkedList<E> {
 
 	//-- 探索メソッド --//
 	public E search(E obj, Comparator<? super E> c){
-		Node<E> ptr = head;						//走査中のノード
+		Node<E> ptr = head;				//走査中のノード
 
 		while(ptr != null){
 			if(c.compare(obj, ptr.data) == 0){	//探索成功
 				crnt = ptr;
 				return ptr.data;
 			}
-			ptr = ptr.next;						//後続ノードに移動
+			ptr = ptr.next;				//後続ノードに移動
 		}
-		return null;							//探索失敗
+		return null;					//探索失敗
 	}
 
 	public void addFirst(E obj){
