@@ -76,59 +76,59 @@ public class BinTree<K,V> {
 			addNode(root, key, data);
 	}
 
-	//--- ã‚­ãƒ¼å€¤ãŒkeyã§ã‚ã‚‹ãƒãƒ¼ãƒ‰ã‚’å‰Šé™¤ --//
+	//--- ƒL[’l‚ªkey‚Å‚ ‚éƒm[ƒh‚ğíœ --//
 	boolean remove(K key) {
-		Node<K,V> p = root;				// èµ°æŸ»ä¸­ã®ãƒãƒ¼ãƒ‰
-		Node<K,V> parent = null;		// èµ°æŸ»ä¸­ã®ãƒãƒ¼ãƒ‰ã®è¦ªãƒãƒ¼ãƒ‰
-		boolean isLeftChild = true;		// pã¯parentã®å·¦å­ãƒãƒ¼ãƒ‰ã‹ï¼Ÿ
+		Node<K,V> p = root;				// ‘–¸’†‚Ìƒm[ƒh
+		Node<K,V> parent = null;		// ‘–¸’†‚Ìƒm[ƒh‚Ìeƒm[ƒh
+		boolean isLeftChild = true;		// p‚Íparent‚Ì¶qƒm[ƒh‚©H
 
 		while (true) {
-			if (p == null)						// ã“ã‚Œä»¥ä¸Šé€²ã‚ãªã‘ã‚Œã°
-				return false;					// â€¦ãã®ã‚­ãƒ¼å€¤ã¯å­˜åœ¨ã—ãªã„
-			int cond = comp(key, p.getKey());	// keyã¨ãƒãƒ¼ãƒ‰pã®ã‚­ãƒ¼å€¤ã‚’æ¯”è¼ƒ
-			if (cond == 0)						// ç­‰ã—ã‘ã‚Œã°
-				break;							// â€¦æ¢ç´¢æˆåŠŸ
+			if (p == null)						// ‚±‚êˆÈãi‚ß‚È‚¯‚ê‚Î
+				return false;					// c‚»‚ÌƒL[’l‚Í‘¶İ‚µ‚È‚¢
+			int cond = comp(key, p.getKey());	// key‚Æƒm[ƒhp‚ÌƒL[’l‚ğ”äŠr
+			if (cond == 0)						// “™‚µ‚¯‚ê‚Î
+				break;							// c’Tõ¬Œ÷
 			else {
-				parent = p;						// æã‚’ä¸‹ã‚‹å‰ã«è¦ªã‚’è¨­å®š
-				if (cond < 0) {					// keyã®ã»ã†ãŒå°ã•ã‘ã‚Œã°
-					isLeftChild = true;			// â€¦ã“ã‚Œã‹ã‚‰ä¸‹ã‚‹ã®ã¯å·¦ã®å­
-					p = p.left;					// â€¦å·¦éƒ¨åˆ†æœ¨ã‹ã‚‰æ¢ç´¢
-				} else {						// keyã®ã»ã†ãŒå¤§ãã‘ã‚Œã°
-					isLeftChild = false;		// â€¦ã“ã‚Œã‹ã‚‰ä¸‹ã‚‹ã®ã¯å³ã®å­
-					p = p.right;				// â€¦å³éƒ¨åˆ†æœ¨ã‹ã‚‰æ¢ç´¢
+				parent = p;						// }‚ğ‰º‚é‘O‚Ée‚ğİ’è
+				if (cond < 0) {					// key‚Ì‚Ù‚¤‚ª¬‚³‚¯‚ê‚Î
+					isLeftChild = true;			// c‚±‚ê‚©‚ç‰º‚é‚Ì‚Í¶‚Ìq
+					p = p.left;					// c¶•”•ª–Ø‚©‚ç’Tõ
+				} else {						// key‚Ì‚Ù‚¤‚ª‘å‚«‚¯‚ê‚Î
+					isLeftChild = false;		// c‚±‚ê‚©‚ç‰º‚é‚Ì‚Í‰E‚Ìq
+					p = p.right;				// c‰E•”•ª–Ø‚©‚ç’Tõ
 				}
 			}
 		}
 
-		if (p.left == null) {				// pã«ã¯å·¦ã®å­ãŒãªã„â€¦
+		if (p.left == null) {				// p‚É‚Í¶‚Ìq‚ª‚È‚¢c
 			if (p == root)
 				root = p.right;
 			else if (isLeftChild)
-				parent.left  = p.right;		// è¦ªã®å·¦ãƒã‚¤ãƒ³ã‚¿ãŒå³ã®å­ã‚’æŒ‡ã™
+				parent.left  = p.right;		// e‚Ì¶ƒ|ƒCƒ“ƒ^‚ª‰E‚Ìq‚ğw‚·
 			else
-				parent.right = p.right;		// è¦ªã®å³ãƒã‚¤ãƒ³ã‚¿ãŒå³ã®å­ã‚’æŒ‡ã™
-		} else if (p.right == null) {		// pã«ã¯å³ã®å­ãŒãªã„â€¦
+				parent.right = p.right;		// e‚Ì‰Eƒ|ƒCƒ“ƒ^‚ª‰E‚Ìq‚ğw‚·
+		} else if (p.right == null) {		// p‚É‚Í‰E‚Ìq‚ª‚È‚¢c
 			if (p == root)
 				root = p.left;
 			else if (isLeftChild)
-				parent.left  = p.left;		// è¦ªã®å·¦ãƒã‚¤ãƒ³ã‚¿ãŒå·¦ã®å­ã‚’æŒ‡ã™
+				parent.left  = p.left;		// e‚Ì¶ƒ|ƒCƒ“ƒ^‚ª¶‚Ìq‚ğw‚·
 			else
-				parent.right = p.left;		// è¦ªã®å³ãƒã‚¤ãƒ³ã‚¿ãŒå·¦ã®å­ã‚’æŒ‡ã™
+				parent.right = p.left;		// e‚Ì‰Eƒ|ƒCƒ“ƒ^‚ª¶‚Ìq‚ğw‚·
 		} else {
 			parent = p;
-			Node<K,V> left = p.left;			// éƒ¨åˆ†æœ¨ã®ä¸­ã®æœ€å¤§ãƒãƒ¼ãƒ‰
+			Node<K,V> left = p.left;			// •”•ª–Ø‚Ì’†‚ÌÅ‘åƒm[ƒh
 			isLeftChild = true;
-			while (left.right != null) {		// æœ€å¤§ãƒãƒ¼ãƒ‰leftã‚’æ¢ç´¢
+			while (left.right != null) {		// Å‘åƒm[ƒhleft‚ğ’Tõ
 				parent = left;
 				left = left.right;
 				isLeftChild = false;
 			}
-			p.key  = left.key;					// leftã®ã‚­ãƒ¼å€¤ã‚’pã«ç§»å‹•
-			p.data = left.data;					// leftã®ãƒ‡ãƒ¼ã‚¿ã‚’pã«ç§»å‹•
+			p.key  = left.key;					// left‚ÌƒL[’l‚ğp‚ÉˆÚ“®
+			p.data = left.data;					// left‚Ìƒf[ƒ^‚ğp‚ÉˆÚ“®
 			if (isLeftChild)
-				parent.left  = left.left;		// leftã‚’å‰Šé™¤
+				parent.left  = left.left;		// left‚ğíœ
 			else
-				parent.right = left.left;		// leftã‚’å‰Šé™¤
+				parent.right = left.left;		// left‚ğíœ
 		}
 		return true;
 	}
