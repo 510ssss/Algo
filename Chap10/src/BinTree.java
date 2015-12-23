@@ -1,76 +1,99 @@
+// ２分探索木
+
 import java.util.Comparator;
 
-public class BinTree<K,V> {
+class BinTree<K,V> {
 
-	static class Node<K,V>{
-		private K key;
-		private V data;
-		private Node<K,V> left;
-		private Node<K,V> right;
+	//--- ノード ---//
+	static class Node<K,V> {
+		K key;					// キー値
+		V data;					// データ
+		Node<K,V> left;			// 左子ノード
+		Node<K,V> right;		// 右子ノード
 
-		Node(K key, V data, Node<K,V> left, Node<K,V> right){
-			this.key = key;
-			this.data = data;
-			this.left = left;
+		//--- コンストラクタ ---//
+		Node(K key, V data, Node<K,V> left, Node<K,V> right) {
+			this.key   = key;
+			this.data  = data;
+			this.left  = left;
 			this.right = right;
 		}
 
-		K getKey(){
+		//--- キー値を返す ---//
+		K getKey() {
 			return key;
 		}
 
-		V getValue(){
+		//--- データを返す ---//
+		V getValue() {
 			return data;
 		}
 
-		void print(){
-			System.out.println(data);
+		//--- データの表示 ---//
+		void print() {
+			System.out.println(data.toString());
 		}
 	}
 
-	private Node<K,V> root;
-	private Comparator<? super K> comparator = null;
+	Node<K,V> root;		// 根
+	private Comparator<? super K> comparator = null;	// コンパレータ
 
-	private int comp(K key1, K key2){
-		return (comparator == null) ? ((Comparable<K>)key1).compareTo(key2)
-									: comparator.compare(key1, key2);
+	//--- コンストラクタ ---//
+	BinTree() {
+		root = null;
 	}
 
-	public V search(K key){
-		Node<K,V> p = root;
+	//--- コンストラクタ ---//
+	BinTree(Comparator<? super K> c) {
+		this();
+		comparator = c;
+	}
 
-		while(true){
-			if(p == null)
-				return null;
-			int cond = comp(key, p.getKey());
-			if(cond == 0)
-				return p.getValue();
-			else if (cond < 0)
-				p = p.left;
-			else
-				p = p.right;
+	//--- 二つのキーを比較 ---//
+	private int comp(K key1, K key2) {
+		return (comparator == null)
+					? ((Comparable<K>)key1).compareTo(key2)
+					: comparator.compare(key1, key2);
+	}
+
+	//--- キーによる探索 ---//
+	V search(K key)	{
+		Node<K,V> p = root;						// 根に着目
+
+		while (true) {
+			if (p == null)						// これ以上進めなければ
+				return null;					// …探索失敗
+			int cond = comp(key, p.getKey());	// keyとノードpのキーを比較
+			if (cond == 0)						// 等しければ
+				return p.getValue();			// …探索成功
+			else if (cond < 0)					// keyのほうが小さければ
+				p = p.left;						// …左部分木から探索
+			else								// keyのほうが大きければ
+				p = p.right;					// …右部分木から探索
 		}
 	}
 
-	private void addNode(Node<K,V> node, K key, V data){
+	//--- nodeを根とする部分木にノード<K,V>を挿入 ---//
+	private void addNode(Node<K,V> node, K key, V data) {
 		int cond = comp(key, node.getKey());
-		if(cond == 0)
-			return;
-		else if(cond < 0){
-			if(node.left == null)
+		if (cond == 0)
+			return;							// keyは２分探索木上に既に存在
+		else if (cond < 0) {
+			if (node.left == null)
 				node.left = new Node<K,V>(key, data, null, null);
 			else
-				addNode(node.left, key, data);
-		}else{
-			if(node.right == null)
+				addNode(node.left, key, data);			// 左部分木に着目
+		} else {
+			if (node.right == null)
 				node.right = new Node<K,V>(key, data, null, null);
 			else
-				addNode(node.right, key, data);
+				addNode(node.right, key, data);			// 右部分木に着目
 		}
 	}
 
-	public void add(K key, V data){
-		if(root == null)
+	//--- ノードを挿入 ---//
+	void add(K key, V data) {
+		if (root == null)
 			root = new Node<K,V>(key, data, null, null);
 		else
 			addNode(root, key, data);
@@ -133,6 +156,18 @@ public class BinTree<K,V> {
 		return true;
 	}
 
+	//--- nodeを根とする部分木のノードをキー値の昇順に表示 ---//
+	private void printSubTree(Node node) {
+		if (node != null) {
+			printSubTree(node.left);		// 左部分木をキー値の昇順に表示
+			System.out.println(node.key.toString() + " " +
+							   node.data.toString());		// nodeを表示
+			printSubTree(node.right);		// 右部分木をキー値の昇順に表示
+		}
+	}
 
+	//--- 全ノードをキー値の昇順に表示 ---//
+	void print() {
+		printSubTree(root);
+	}
 }
-
